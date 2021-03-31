@@ -18,6 +18,10 @@ client.connect(err => {
     const ordersCollection = client.db("emaJhon").collection("orders");
     // perform actions on the collection object
 
+    app.get('/', (req, res)=> {
+        res.send("Hello! DB is working!")
+    })
+
     app.post('/addProduct', (req, res) => {
         const allProduct = req.body;
         //   console.log(allProduct)
