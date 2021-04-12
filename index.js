@@ -19,7 +19,7 @@ client.connect(err => {
     // perform actions on the collection object
 
     app.get('/', (req, res)=> {
-        res.send("Hello! DB is working!")
+        res.send("Hello! DB is working with search!")
     })
 
     app.post('/addProduct', (req, res) => {
@@ -33,7 +33,8 @@ client.connect(err => {
     })
 
     app.get('/products', (req, res) => {
-        productsCollection.find({})
+        const search = req.query.search;
+        productsCollection.find({ name : {$regex: search}})
             .toArray((error, documents) => {
                 res.send(documents);
             })
